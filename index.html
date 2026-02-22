@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bitácora Fiat Siena KBN73A</title>
-    <!-- Cargando librerías externas -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -13,12 +12,13 @@
         .ai-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
         .card-shadow { box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05); }
         input:focus { outline: none; border-color: #3b82f6; ring: 2px #3b82f6; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen pb-20">
 
     <div id="app" class="max-w-6xl mx-auto px-4 py-8">
-        <!-- Encabezado con Identidad del Carro -->
+        <!-- Header -->
         <header class="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
             <div class="flex items-center gap-4">
                 <div class="bg-blue-600 p-3 rounded-2xl text-white shadow-lg shadow-blue-200">
@@ -26,88 +26,151 @@
                 </div>
                 <div>
                     <h1 class="text-3xl font-black text-slate-900 tracking-tight">Mi Fiat Siena ELX</h1>
-                    <p class="text-slate-500 font-semibold">Placa: <span class="text-blue-600 uppercase">KBN73A</span></p>
+                    <p class="text-slate-500 font-semibold italic">Placa: <span class="text-blue-600 uppercase font-black">KBN73A</span> | Motor Fire 1.3 16V</p>
                 </div>
             </div>
-            <div id="auth-status" class="text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm text-slate-400">
-                Sincronizando Nube...
+            <div id="storage-status" class="text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm text-slate-400 transition-all">
+                Cargando sistema...
             </div>
         </header>
 
-        <!-- Asistente de IA y Herramientas -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <div class="ai-gradient p-1 rounded-[2rem] shadow-2xl shadow-indigo-100 group transition-all">
-                <div class="bg-white rounded-[1.8rem] p-7 h-full flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2 mb-4">
-                            <i data-lucide="sparkles" class="text-indigo-500 w-5 h-5 animate-pulse"></i>
-                            <h3 class="font-bold text-slate-800 text-xl">Consultar a Gemini IA ✨</h3>
-                        </div>
-                        <p class="text-sm text-slate-500 mb-6 leading-relaxed">¿Ruidos extraños? ¿Dudas sobre el motor 1.3 16V? Tu asistente experto está listo.</p>
-                    </div>
-                    <button id="btn-ai-assist" class="w-full py-4 bg-indigo-600 text-white rounded-2xl font-black text-sm hover:bg-indigo-700 transition-all shadow-lg flex items-center justify-center gap-2">
-                        Hablar con el Mecánico IA
-                    </button>
-                </div>
-            </div>
-
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 card-shadow flex flex-col justify-between">
-                <div>
-                    <h3 class="font-bold text-slate-800 text-xl mb-2">Exportar Historial</h3>
-                    <p class="text-sm text-slate-500">Genera un archivo compatible con Excel (CSV) para guardar en tu PC.</p>
-                </div>
-                <button id="export-csv" class="w-full py-4 border-2 border-slate-900 text-slate-900 rounded-2xl font-black text-sm hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center gap-2 mt-6">
-                    <i data-lucide="download" class="w-4 h-4"></i> Descargar Excel (.csv)
-                </button>
-            </div>
-        </section>
-
-        <!-- Métricas Principales -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <div class="bg-slate-900 rounded-[2rem] p-8 text-white md:col-span-2 flex flex-col justify-between shadow-2xl shadow-slate-200">
-                <div>
-                    <p class="text-slate-400 text-xs font-black uppercase tracking-[0.2em] mb-2">Inversión en Mantenimiento</p>
-                    <div class="text-6xl font-black tracking-tighter" id="total-global">$ 0.00</div>
-                </div>
-                <div class="flex gap-8 mt-8">
-                    <div>
-                        <p class="text-slate-500 text-[10px] font-bold uppercase">Servicios</p>
-                        <p id="service-count" class="text-xl font-bold">0</p>
-                    </div>
-                    <div>
-                        <p class="text-slate-500 text-[10px] font-bold uppercase">Último Km</p>
-                        <p id="last-km" class="text-xl font-bold text-blue-400">---</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Secciones Principales -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
             
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 card-shadow space-y-4">
-                <h4 class="font-bold text-slate-800 border-b pb-2">Ficha Técnica</h4>
-                <div class="space-y-3">
-                    <div class="text-xs">
-                        <span class="text-slate-400 block font-bold uppercase text-[9px]">Motor</span>
-                        <span class="font-bold">1.3 16V Fire</span>
+            <!-- Ficha Técnica Extendida -->
+            <div class="lg:col-span-2 space-y-8">
+                <section class="bg-white rounded-[2.5rem] border border-slate-200 p-8 card-shadow">
+                    <h2 class="text-xl font-black mb-6 flex items-center gap-2 text-slate-800">
+                        <i data-lucide="clipboard-check" class="text-blue-600"></i> Ficha Técnica Detallada
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">VIN / Chasis</label>
+                            <div class="p-3 bg-slate-50 rounded-xl text-xs font-mono text-slate-600 border border-slate-100 break-all">9BD17218263219159</div>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Aceite Motor</label>
+                            <input type="text" id="v-aceite" class="w-full bg-white border-2 border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-700 focus:border-blue-500 transition-all" value="15W-40 (2.7L)">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Refrigerante</label>
+                            <input type="text" id="v-refri" class="w-full bg-white border-2 border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-700 focus:border-blue-500 transition-all" value="Paraflu 50/50 (6L)">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Aceite Dirección</label>
+                            <input type="text" id="v-direccion" class="w-full bg-white border-2 border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-700 focus:border-blue-500 transition-all" value="Tutela GI/A (0.8L)">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Líquido Frenos</label>
+                            <input type="text" id="v-frenos" class="w-full bg-white border-2 border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-700 focus:border-blue-500 transition-all" value="DOT 4 (0.5L)">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Presión Llantas</label>
+                            <input type="text" id="v-presion" class="w-full bg-white border-2 border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-700 focus:border-blue-500 transition-all" value="28-32 PSI">
+                        </div>
                     </div>
-                    <div class="text-xs">
-                        <span class="text-slate-400 block font-bold uppercase text-[9px]">VIN</span>
-                        <span class="font-mono text-slate-500 break-all">9BD17218263219159</span>
+                    <button id="save-vehicle" class="mt-8 bg-slate-900 hover:bg-slate-800 text-white text-xs font-black px-8 py-3 rounded-xl transition-all shadow-lg flex items-center gap-2 uppercase tracking-widest">
+                        <i data-lucide="save" class="w-4 h-4"></i> Guardar Ficha
+                    </button>
+                </section>
+
+                <!-- Cronograma de Cambios -->
+                <section class="bg-white rounded-[2.5rem] border border-slate-200 p-8 card-shadow overflow-hidden">
+                    <h2 class="text-xl font-black mb-6 flex items-center gap-2 text-slate-800">
+                        <i data-lucide="calendar-clock" class="text-amber-500"></i> Cronograma de Mantenimiento
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg text-blue-600 shrink-0"><i data-lucide="droplet" class="w-4 h-4"></i></div>
+                            <div>
+                                <p class="text-[10px] font-black text-slate-400 uppercase">Aceite Motor</p>
+                                <p class="text-xs font-bold text-slate-700">Cada 5-7k km</p>
+                                <p class="text-[9px] text-slate-500 italic">Pequeño: 2.7L</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-red-50 border border-red-100 flex items-start gap-3">
+                            <div class="bg-red-100 p-2 rounded-lg text-red-600 shrink-0"><i data-lucide="activity" class="w-4 h-4"></i></div>
+                            <div>
+                                <p class="text-[10px] font-black text-red-400 uppercase tracking-tighter">Correa Distribución</p>
+                                <p class="text-xs font-bold text-red-700">Cada 50-60k km</p>
+                                <p class="text-[9px] text-red-500 italic">Crítico en 16V</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-start gap-3">
+                            <div class="bg-indigo-100 p-2 rounded-lg text-indigo-600 shrink-0"><i data-lucide="rotate-ccw" class="w-4 h-4"></i></div>
+                            <div>
+                                <p class="text-[10px] font-black text-indigo-400 uppercase">Dirección Hidr.</p>
+                                <p class="text-xs font-bold text-indigo-700">Cada 40,000 km</p>
+                                <p class="text-[9px] text-indigo-500 italic">Líquido Tutela GI/A</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-3">
+                            <div class="bg-amber-100 p-2 rounded-lg text-amber-600 shrink-0"><i data-lucide="zap" class="w-4 h-4"></i></div>
+                            <div>
+                                <p class="text-[10px] font-black text-slate-400 uppercase">Bujías</p>
+                                <p class="text-xs font-bold text-slate-700">Revisar c/10k km</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-3">
+                            <div class="bg-green-100 p-2 rounded-lg text-green-600 shrink-0"><i data-lucide="thermometer" class="w-4 h-4"></i></div>
+                            <div>
+                                <p class="text-[10px] font-black text-slate-400 uppercase">Refrigerante</p>
+                                <p class="text-xs font-bold text-slate-700">Cada 2 años</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-3">
+                            <div class="bg-slate-200 p-2 rounded-lg text-slate-600 shrink-0"><i data-lucide="circle-stop" class="w-4 h-4"></i></div>
+                            <div>
+                                <p class="text-[10px] font-black text-slate-400 uppercase">Frenos DOT 4</p>
+                                <p class="text-xs font-bold text-slate-700">Cada 2 años</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-xs">
-                        <span class="text-slate-400 block font-bold uppercase text-[9px]">Líquidos</span>
-                        <input id="v-frenos" type="text" placeholder="DOT 4" class="w-full bg-slate-50 border-none p-2 rounded mt-1 font-bold">
+                </section>
+            </div>
+
+            <!-- Resumen y Asistente -->
+            <aside class="space-y-8">
+                <div class="bg-slate-900 rounded-[2.5rem] p-8 text-white shadow-2xl shadow-slate-200 h-fit">
+                    <p class="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mb-2">Inversión Total</p>
+                    <div class="text-5xl font-black tracking-tighter mb-8" id="total-global">$ 0.00</div>
+                    <div class="space-y-4 pt-6 border-t border-slate-800">
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400 text-sm">Servicios:</span>
+                            <span id="service-count" class="font-bold bg-white/10 px-3 py-1 rounded-lg">0</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400 text-sm">Último Km:</span>
+                            <span id="last-km" class="font-bold text-blue-400 text-lg">---</span>
+                        </div>
                     </div>
                 </div>
-                <button id="save-vehicle" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg text-xs font-bold transition-all">Guardar Datos</button>
-            </div>
+
+                <div class="ai-gradient p-1 rounded-[2.5rem] shadow-xl">
+                    <div class="bg-white rounded-[2.3rem] p-7">
+                        <h3 class="font-black text-slate-800 flex items-center gap-2 mb-4">
+                            <i data-lucide="sparkles" class="text-indigo-500 w-5 h-5"></i> Asistente IA ✨
+                        </h3>
+                        <p class="text-xs text-slate-500 mb-6 leading-relaxed">Analiza ruidos o fallas específicas de tu motor 16V.</p>
+                        <button id="btn-ai-assist" class="w-full py-4 bg-indigo-600 text-white rounded-2xl font-black text-sm hover:bg-indigo-700 transition-all shadow-lg">
+                            Consultar Gemini
+                        </button>
+                    </div>
+                </div>
+
+                <button id="export-csv" class="w-full py-4 border-2 border-slate-200 text-slate-600 rounded-2xl font-bold text-sm hover:bg-slate-50 transition-all flex items-center justify-center gap-2 uppercase tracking-widest">
+                    <i data-lucide="download" class="w-4 h-4"></i> Respaldar Excel
+                </button>
+            </aside>
         </div>
 
-        <!-- Tabla de Servicios -->
-        <section class="bg-white rounded-[2rem] border border-slate-200 card-shadow overflow-hidden">
-            <div class="p-8 border-b border-slate-100 flex justify-between items-center">
+        <!-- Historial de Mantenimiento -->
+        <section class="bg-white rounded-[2.5rem] border border-slate-200 card-shadow overflow-hidden">
+            <div class="p-8 border-b border-slate-100 flex justify-between items-center bg-white">
                 <h2 class="text-xl font-black text-slate-800 flex items-center gap-3">
-                    <i data-lucide="list-checks" class="text-blue-600"></i> Registros Sincronizados
+                    <i data-lucide="history" class="text-blue-600"></i> Bitácora de Servicios
                 </h2>
-                <button id="add-service" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl font-black text-sm shadow-lg shadow-blue-100 transition-all active:scale-95">
+                <button id="add-service" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-2xl font-black text-sm shadow-xl shadow-blue-100 transition-all">
                     Nuevo Registro
                 </button>
             </div>
@@ -118,79 +181,57 @@
                         <tr>
                             <th class="px-8 py-5">Fecha</th>
                             <th class="px-8 py-5">Kilometraje</th>
-                            <th class="px-8 py-5">Servicio Realizado</th>
-                            <th class="px-8 py-5 text-right">Costo Total</th>
-                            <th class="px-8 py-5 text-center">⚙️</th>
+                            <th class="px-8 py-5">Trabajo Realizado</th>
+                            <th class="px-8 py-5 text-right">Monto</th>
+                            <th class="px-8 py-5 text-center">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="services-body" class="divide-y divide-slate-100 text-sm">
-                        <tr id="empty-state">
-                            <td colspan="5" class="px-8 py-20 text-center text-slate-300 italic font-medium">
-                                No hay registros guardados. Haz clic en "Nuevo Registro".
-                            </td>
-                        </tr>
+                    <tbody id="services-body" class="divide-y divide-slate-100 text-sm text-slate-700 font-medium">
+                        <!-- Filas dinámicas -->
                     </tbody>
                 </table>
             </div>
         </section>
     </div>
 
-    <!-- Modal Formulario -->
+    <!-- Modales -->
     <div id="modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-md overflow-hidden animate-in zoom-in duration-200">
+        <div class="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-md overflow-hidden">
             <div class="p-8 border-b border-slate-100 flex justify-between items-center">
                 <h3 id="modal-title" class="text-2xl font-black text-slate-800">Registrar</h3>
-                <button onclick="closeModal()" class="p-2 hover:bg-slate-100 rounded-full"><i data-lucide="x"></i></button>
+                <button onclick="closeModal()" class="p-2 hover:bg-slate-100 rounded-full"><i data-lucide="x" class="text-slate-400"></i></button>
             </div>
-            <form id="service-form" class="p-8 space-y-4">
+            <form id="service-form" class="p-8 space-y-5">
                 <input type="hidden" id="service-id">
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="space-y-1">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Fecha</label>
-                        <input type="date" id="s-fecha" required class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500 transition-all font-bold">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Km Actual</label>
-                        <input type="number" id="s-km" required class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500 transition-all font-bold" placeholder="0">
-                    </div>
+                    <input type="date" id="s-fecha" required class="border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500 font-bold">
+                    <input type="number" id="s-km" required class="border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500 font-bold" placeholder="Km">
                 </div>
-                <div class="space-y-1">
-                    <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">¿Qué se reparó?</label>
-                    <input type="text" id="s-detalle" required class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500 transition-all" placeholder="Ej: Cambio de frenos">
-                </div>
-                <div class="space-y-1">
-                    <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Taller / Mecánico</label>
-                    <input type="text" id="s-taller" class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500 transition-all" placeholder="Nombre">
-                </div>
+                <input type="text" id="s-detalle" required class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500" placeholder="Descripción del trabajo">
+                <input type="text" id="s-taller" class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500" placeholder="Mecánico / Taller">
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="space-y-1">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Repuestos $</label>
-                        <input type="number" step="0.01" id="s-repuestos" class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm font-bold" value="0">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Mano Obra $</label>
-                        <input type="number" step="0.01" id="s-mano-obra" class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm font-bold" value="0">
-                    </div>
+                    <input type="number" step="0.01" id="s-repuestos" class="border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm font-bold" value="0" placeholder="Repuestos $">
+                    <input type="number" step="0.01" id="s-mano-obra" class="border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm font-bold" value="0" placeholder="Mano Obra $">
                 </div>
-                <button type="submit" class="w-full bg-slate-900 text-white font-black py-4 rounded-2xl hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 mt-4">Guardar Registro</button>
+                <button type="submit" class="w-full bg-slate-900 text-white font-black py-4 rounded-2xl hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 mt-4">Guardar en Historial</button>
             </form>
         </div>
     </div>
 
-    <!-- Modal AI -->
+    <!-- AI Chat Modal -->
     <div id="ai-modal" class="fixed inset-0 bg-indigo-950/40 backdrop-blur-md hidden items-center justify-center p-4 z-[60]">
-        <div class="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col h-[85vh] animate-in slide-in-from-bottom duration-300">
+        <div class="bg-white rounded-[3rem] shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col h-[85vh] animate-in slide-in-from-bottom duration-300">
             <div class="ai-gradient p-8 text-white flex justify-between items-center">
-                <h3 class="text-2xl font-black flex items-center gap-3"><i data-lucide="sparkles"></i> Asistente de IA</h3>
-                <button onclick="closeAIModal()" class="hover:bg-white/20 p-2 rounded-full transition-colors"><i data-lucide="x"></i></button>
+                <h3 class="text-2xl font-black flex items-center gap-3"><i data-lucide="sparkles"></i> Asistente Gemini</h3>
+                <button onclick="closeAIModal()" class="hover:bg-white/20 p-2 rounded-full"><i data-lucide="x"></i></button>
             </div>
-            <div id="ai-chat" class="flex-1 overflow-y-auto p-8 space-y-6 text-sm bg-white">
+            <div id="ai-chat" class="flex-1 overflow-y-auto p-8 space-y-6 text-sm bg-white no-scrollbar">
                 <div class="bg-indigo-50 p-6 rounded-[2rem] border border-indigo-100 text-indigo-900 leading-relaxed font-medium">
-                    Hola. Soy Gemini, tu experto en el motor Fire 1.3 16V. ¿Tienes algún síntoma nuevo o quieres revisar tu plan de mantenimiento?
+                    Hola. Analizaré tu historial o responderé dudas técnicas específicas del motor **Fire 1.3 16V**. Recuerda que este motor es muy sensible al cambio de correa y calidad de aceite. ¿En qué puedo ayudarte?
                 </div>
             </div>
             <div class="p-6 bg-slate-50 border-t flex gap-3">
-                <input type="text" id="ai-input" class="flex-1 border-0 bg-white rounded-2xl px-6 py-4 text-sm shadow-inner focus:ring-2 focus:ring-indigo-500 font-medium" placeholder="Describe ruidos o haz una pregunta...">
+                <input type="text" id="ai-input" class="flex-1 border-0 bg-white rounded-2xl px-6 py-4 text-sm shadow-inner focus:ring-2 focus:ring-indigo-500 font-medium" placeholder="Escribe tu consulta...">
                 <button id="ai-send" class="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-black hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100">Consultar</button>
             </div>
         </div>
@@ -198,144 +239,110 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, collection, query, onSnapshot, addDoc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // CONFIG
-        const apiKey = ""; // Runtime provisioned
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'siena-final-app-2024';
-
-        let user = null;
+        const useCloud = typeof __firebase_config !== 'undefined';
+        let db, auth, appId;
         let globalData = [];
+        const apiKey = ""; 
 
-        // AUTH
-        (async () => {
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) await signInWithCustomToken(auth, __initial_auth_token);
-            else await signInAnonymously(auth);
-        })();
-
-        onAuthStateChanged(auth, u => {
-            user = u;
-            if (u) {
-                document.getElementById('auth-status').innerText = "✓ Sincronizado";
-                document.getElementById('auth-status').className = "text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-green-50 text-green-600 border border-green-200 shadow-sm";
-                loadVehicle();
-                subscribe();
+        const initializeStorage = async () => {
+            const statusEl = document.getElementById('storage-status');
+            
+            if (useCloud) {
+                const config = JSON.parse(__firebase_config);
+                const app = initializeApp(config);
+                auth = getAuth(app);
+                db = getFirestore(app);
+                appId = typeof __app_id !== 'undefined' ? __app_id : 'siena-app-final-prod';
+                
+                statusEl.innerText = "✓ Nube Sincronizada";
+                statusEl.className = "text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-green-50 text-green-600 border border-green-100 shadow-sm";
+                
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        subscribeCloud();
+                        loadVehicleCloud();
+                    }
+                });
+            } else {
+                statusEl.innerText = "⚠ Almacenamiento Local (GitHub)";
+                statusEl.className = "text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-amber-50 text-amber-600 border border-amber-100 shadow-sm";
+                loadLocalData();
+                loadVehicleLocal();
             }
-        });
+        };
 
         const vRef = () => doc(db, 'artifacts', appId, 'public', 'data', 'vehicle_config', 'details');
-        const sRef = () => collection(db, 'artifacts', appId, 'public', 'data', 'services');
+        const sColl = () => collection(db, 'artifacts', appId, 'public', 'data', 'services');
 
-        async function loadVehicle() {
+        async function loadVehicleCloud() {
             const snap = await getDoc(vRef());
             if (snap.exists()) {
                 const d = snap.data();
-                document.getElementById('v-frenos').value = d.frenos || '';
+                if(d.aceite) document.getElementById('v-aceite').value = d.aceite;
+                if(d.refri) document.getElementById('v-refri').value = d.refri;
+                if(d.direccion) document.getElementById('v-direccion').value = d.direccion;
+                if(d.frenos) document.getElementById('v-frenos').value = d.frenos;
+                if(d.presion) document.getElementById('v-presion').value = d.presion;
             }
         }
 
-        document.getElementById('save-vehicle').onclick = async () => {
-            await setDoc(vRef(), { frenos: document.getElementById('v-frenos').value, updated: new Date() });
-            toast("Ficha técnica guardada");
-        };
-
-        function subscribe() {
-            onSnapshot(query(sRef()), snap => {
+        function subscribeCloud() {
+            onSnapshot(query(sColl()), (snap) => {
                 const data = [];
                 snap.forEach(d => data.push({ id: d.id, ...d.data() }));
-                data.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-                globalData = data;
-                render(data);
-                stats(data);
+                globalData = data.sort((a,b) => new Date(b.fecha) - new Date(a.fecha));
+                render(globalData);
+                stats(globalData);
             });
         }
 
-        function render(items) {
-            const b = document.getElementById('services-body');
-            if (items.length === 0) {
-                b.innerHTML = '<tr><td colspan="5" class="px-8 py-20 text-center text-slate-300 italic">No hay registros guardados.</td></tr>';
-                return;
+        function loadLocalData() {
+            const saved = localStorage.getItem('siena_services_v2');
+            globalData = saved ? JSON.parse(saved) : [];
+            render(globalData);
+            stats(globalData);
+        }
+
+        function saveLocalData() {
+            localStorage.setItem('siena_services_v2', JSON.stringify(globalData));
+            render(globalData);
+            stats(globalData);
+        }
+
+        function loadVehicleLocal() {
+            const d = JSON.parse(localStorage.getItem('siena_v_info') || '{}');
+            if(d.aceite) document.getElementById('v-aceite').value = d.aceite;
+            if(d.refri) document.getElementById('v-refri').value = d.refri;
+            if(d.direccion) document.getElementById('v-direccion').value = d.direccion;
+            if(d.frenos) document.getElementById('v-frenos').value = d.frenos;
+            if(d.presion) document.getElementById('v-presion').value = d.presion;
+        }
+
+        document.getElementById('save-vehicle').onclick = async () => {
+            const info = {
+                aceite: document.getElementById('v-aceite').value,
+                refri: document.getElementById('v-refri').value,
+                direccion: document.getElementById('v-direccion').value,
+                frenos: document.getElementById('v-frenos').value,
+                presion: document.getElementById('v-presion').value,
+                updated: new Date()
+            };
+            if (useCloud) {
+                await setDoc(vRef(), info);
+            } else {
+                localStorage.setItem('siena_v_info', JSON.stringify(info));
             }
-            b.innerHTML = items.map(i => `
-                <tr class="hover:bg-slate-50 transition-colors group animate-in fade-in duration-300">
-                    <td class="px-8 py-6 font-bold text-slate-400 text-xs">${i.fecha}</td>
-                    <td class="px-8 py-6 font-mono font-black text-slate-600">${parseInt(i.km || 0).toLocaleString()} km</td>
-                    <td class="px-8 py-6 font-bold text-slate-800">${i.detalle}</td>
-                    <td class="px-8 py-6 text-right font-black text-slate-900">$ ${((i.repuestos||0) + (i.manoObra||0)).toFixed(2)}</td>
-                    <td class="px-8 py-6 text-center">
-                        <div class="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button onclick="editItem('${i.id}')" class="p-2 text-blue-600 hover:bg-blue-100 rounded-xl"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
-                            <button onclick="deleteItem('${i.id}')" class="p-2 text-red-600 hover:bg-red-100 rounded-xl"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
-            lucide.createIcons();
-        }
-
-        function stats(items) {
-            const total = items.reduce((a, b) => a + (parseFloat(b.repuestos) || 0) + (parseFloat(b.manoObra) || 0), 0);
-            const km = items.length > 0 ? Math.max(...items.map(i => parseInt(i.km) || 0)) : 0;
-            document.getElementById('total-global').innerText = `$ ${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-            document.getElementById('service-count').innerText = items.length;
-            document.getElementById('last-km').innerText = km ? `${km.toLocaleString()} km` : '---';
-        }
-
-        document.getElementById('export-csv').onclick = () => {
-            if (globalData.length === 0) return toast("No hay datos");
-            const h = "Fecha,Km,Detalle,Taller,Repuestos,ManoObra,Total\n";
-            const c = globalData.map(i => `${i.fecha},${i.km},"${i.detalle}","${i.taller}",${i.repuestos},${i.manoObra},${(i.repuestos+i.manoObra)}`).join('\n');
-            const blob = new Blob([h + c], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "mi_siena_mantenimiento.csv";
-            link.click();
+            toast("Ficha técnica actualizada");
         };
-
-        const aiModal = document.getElementById('ai-modal');
-        document.getElementById('btn-ai-assist').onclick = () => aiModal.classList.replace('hidden', 'flex');
-        window.closeAIModal = () => aiModal.classList.replace('flex', 'hidden');
-
-        async function callGemini(p) {
-            const sys = "Experto mecánico en Fiat Siena 2006 1.3 16V Fire. Sé profesional y directo.";
-            try {
-                const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ contents: [{parts: [{text: p}]}], systemInstruction: {parts: [{text: sys}]} })
-                });
-                const d = await r.json();
-                return d.candidates[0].content.parts[0].text;
-            } catch(e) { return "Error al conectar con la IA."; }
-        }
-
-        document.getElementById('ai-send').onclick = async () => {
-            const input = document.getElementById('ai-input');
-            if(!input.value) return;
-            const chat = document.getElementById('ai-chat');
-            chat.innerHTML += `<div class="bg-indigo-600 text-white p-5 rounded-[2rem] ml-12 self-end font-bold shadow-md">${input.value}</div>`;
-            const query = input.value; input.value = "";
-            const load = document.createElement('div'); load.className = "text-indigo-400 font-bold text-xs ml-4 animate-pulse"; load.innerText = "Gemini analizando..."; chat.appendChild(load);
-            const hist = globalData.slice(0,5).map(i => `${i.fecha}: ${i.detalle}`).join(', ');
-            const res = await callGemini(`Vehículo: Siena 1.3 16V. Historial: ${hist}. Consulta: ${query}`);
-            load.remove();
-            chat.innerHTML += `<div class="bg-slate-50 p-6 rounded-[2rem] mr-12 text-slate-800 leading-relaxed border border-slate-200 shadow-sm">${res}</div>`;
-            chat.scrollTop = chat.scrollHeight;
-        };
-
-        const modal = document.getElementById('modal');
-        document.getElementById('add-service').onclick = () => {
-            document.getElementById('modal-title').innerText = "Nuevo Registro";
-            document.getElementById('service-form').reset();
-            document.getElementById('service-id').value = "";
-            modal.classList.replace('hidden', 'flex');
-        };
-        window.closeModal = () => modal.classList.replace('flex', 'hidden');
 
         document.getElementById('service-form').onsubmit = async (e) => {
             e.preventDefault();
@@ -349,14 +356,68 @@
                 manoObra: parseFloat(document.getElementById('s-mano-obra').value) || 0,
                 updated: new Date()
             };
-            if(id) await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'services', id), data);
-            else await addDoc(sRef(), data);
+
+            if (useCloud) {
+                if(id) await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'services', id), data);
+                else await addDoc(sColl(), data);
+            } else {
+                if(id) {
+                    const idx = globalData.findIndex(x => x.id === id);
+                    globalData[idx] = { ...data, id };
+                } else {
+                    globalData.push({ ...data, id: Date.now().toString() });
+                }
+                globalData.sort((a,b) => new Date(b.fecha) - new Date(a.fecha));
+                saveLocalData();
+            }
             closeModal();
-            toast("Registro sincronizado");
+            toast("Sincronizado correctamente");
         };
 
-        window.deleteItem = async id => { if(confirm("¿Eliminar?")) await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'services', id)); };
-        window.editItem = id => {
+        window.deleteItem = async (id) => {
+            if(!confirm("¿Eliminar este registro permanentemente?")) return;
+            if (useCloud) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'services', id));
+            } else {
+                globalData = globalData.filter(x => x.id !== id);
+                saveLocalData();
+            }
+        };
+
+        function render(items) {
+            const b = document.getElementById('services-body');
+            if (items.length === 0) {
+                b.innerHTML = '<tr><td colspan="5" class="px-8 py-20 text-center text-slate-300 italic font-medium">No hay registros guardados.</td></tr>';
+                return;
+            }
+            b.innerHTML = items.map(i => {
+                const total = (parseFloat(i.repuestos) || 0) + (parseFloat(i.manoObra) || 0);
+                return `
+                <tr class="hover:bg-slate-50 transition-colors group border-b border-slate-50">
+                    <td class="px-8 py-6 font-bold text-slate-400 text-xs">${i.fecha}</td>
+                    <td class="px-8 py-6 font-mono font-black text-slate-600">${(i.km || 0).toLocaleString()} km</td>
+                    <td class="px-8 py-6 font-bold text-slate-800">${i.detalle} <br> <span class="text-[10px] text-slate-400 italic">${i.taller || ''}</span></td>
+                    <td class="px-8 py-6 text-right font-black text-slate-900">$ ${total.toFixed(2)}</td>
+                    <td class="px-8 py-6 text-center">
+                        <div class="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="editItem('${i.id}')" class="p-2 text-blue-600 hover:bg-blue-100 rounded-xl transition-all"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                            <button onclick="deleteItem('${i.id}')" class="p-2 text-red-600 hover:bg-red-100 rounded-xl transition-all"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            `}).join('');
+            lucide.createIcons();
+        }
+
+        function stats(items) {
+            const total = items.reduce((a, b) => a + (parseFloat(b.repuestos) || 0) + (parseFloat(b.manoObra) || 0), 0);
+            const km = items.length > 0 ? Math.max(...items.map(i => parseInt(i.km) || 0)) : 0;
+            document.getElementById('total-global').innerText = `$ ${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+            document.getElementById('service-count').innerText = items.length;
+            document.getElementById('last-km').innerText = km ? `${km.toLocaleString()} km` : '---';
+        }
+
+        window.editItem = (id) => {
             const i = globalData.find(x => x.id === id);
             document.getElementById('modal-title').innerText = "Editar Registro";
             document.getElementById('service-id').value = id;
@@ -366,8 +427,57 @@
             document.getElementById('s-taller').value = i.taller || "";
             document.getElementById('s-repuestos').value = i.repuestos;
             document.getElementById('s-mano-obra').value = i.manoObra;
-            modal.classList.replace('hidden', 'flex');
+            document.getElementById('modal').classList.replace('hidden', 'flex');
         };
+
+        async function callGemini(p) {
+            if(!useCloud) return "La IA avanzada requiere conexión Gemini. En modo local puedes gestionar tus datos pero las consultas inteligentes no están disponibles.";
+            const sys = "Experto mecánico Fiat Siena 2006 1.3 16V Fire. Respuestas técnicas, precisas y enfocadas en mantenimiento preventivo.";
+            try {
+                const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ contents: [{parts: [{text: p}]}], systemInstruction: {parts: [{text: sys}]} })
+                });
+                const d = await r.json();
+                return d.candidates[0].content.parts[0].text;
+            } catch(e) { return "Error al conectar con la inteligencia artificial."; }
+        }
+
+        document.getElementById('ai-send').onclick = async () => {
+            const input = document.getElementById('ai-input');
+            if(!input.value) return;
+            const chat = document.getElementById('ai-chat');
+            chat.innerHTML += `<div class="bg-indigo-600 text-white p-5 rounded-[2rem] ml-12 self-end font-bold shadow-md">${input.value}</div>`;
+            const query = input.value; input.value = "";
+            const load = document.createElement('div'); load.className = "text-indigo-400 font-bold text-xs ml-4 animate-pulse"; load.innerText = "Gemini analizando historial..."; chat.appendChild(load);
+            const hist = globalData.slice(0,5).map(i => `${i.fecha}: ${i.detalle}`).join(', ');
+            const res = await callGemini(`Siena 1.3 16V. Historial reciente: ${hist}. Consulta: ${query}`);
+            load.remove();
+            chat.innerHTML += `<div class="bg-slate-50 p-6 rounded-[2rem] mr-12 text-slate-800 border border-slate-200 shadow-sm">${res}</div>`;
+            chat.scrollTop = chat.scrollHeight;
+        };
+
+        document.getElementById('export-csv').onclick = () => {
+            if (globalData.length === 0) return toast("No hay datos para exportar");
+            const h = "Fecha,Km,Detalle,Taller,Repuestos,ManoObra,Total\n";
+            const c = globalData.map(i => `${i.fecha},${i.km},"${i.detalle}","${i.taller}",${i.repuestos},${i.manoObra},${(i.repuestos+i.manoObra)}`).join('\n');
+            const blob = new Blob([h + c], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "mantenimiento_fiat_siena.csv";
+            link.click();
+        };
+
+        window.closeModal = () => document.getElementById('modal').classList.replace('hidden', 'flex');
+        window.closeAIModal = () => document.getElementById('ai-modal').classList.replace('flex', 'hidden');
+        document.getElementById('add-service').onclick = () => {
+            document.getElementById('modal-title').innerText = "Nuevo Registro";
+            document.getElementById('service-form').reset();
+            document.getElementById('service-id').value = "";
+            document.getElementById('modal').classList.replace('hidden', 'flex');
+        };
+        document.getElementById('btn-ai-assist').onclick = () => document.getElementById('ai-modal').classList.replace('hidden', 'flex');
 
         function toast(m) {
             const t = document.createElement('div');
@@ -377,6 +487,7 @@
             setTimeout(() => t.remove(), 3000);
         }
 
+        initializeStorage();
         lucide.createIcons();
     </script>
 </body>
