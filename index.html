@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div id="storage-status" class="text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm text-slate-400 transition-all">
-                Cargando sistema...
+                Sincronizando...
             </div>
         </header>
 
@@ -45,27 +45,27 @@
                     </h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                         <div class="space-y-1">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">VIN / Chasis</label>
-                            <div class="p-3 bg-slate-50 rounded-xl text-xs font-mono text-slate-600 border border-slate-100 break-all">9BD17218263219159</div>
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest text-balance">VIN / Chasis</label>
+                            <div class="p-3 bg-slate-50 rounded-xl text-xs font-mono text-slate-600 border border-slate-100 break-all select-all">9BD17218263219159</div>
                         </div>
                         <div class="space-y-1">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Aceite Motor</label>
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest text-balance">Aceite Motor</label>
                             <input type="text" id="v-aceite" class="w-full bg-white border-2 border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-700 focus:border-blue-500 transition-all" value="15W-40 (2.7L)">
                         </div>
                         <div class="space-y-1">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Refrigerante</label>
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest text-balance">Refrigerante</label>
                             <input type="text" id="v-refri" class="w-full bg-white border-2 border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-700 focus:border-blue-500 transition-all" value="Paraflu 50/50 (6L)">
                         </div>
                         <div class="space-y-1">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Aceite Dirección</label>
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest text-balance">Aceite Dirección</label>
                             <input type="text" id="v-direccion" class="w-full bg-white border-2 border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-700 focus:border-blue-500 transition-all" value="Tutela GI/A (0.8L)">
                         </div>
                         <div class="space-y-1">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Líquido Frenos</label>
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest text-balance">Líquido Frenos</label>
                             <input type="text" id="v-frenos" class="w-full bg-white border-2 border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-700 focus:border-blue-500 transition-all" value="DOT 4 (0.5L)">
                         </div>
                         <div class="space-y-1">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Presión Llantas</label>
+                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest text-balance">Presión Llantas</label>
                             <input type="text" id="v-presion" class="w-full bg-white border-2 border-slate-100 rounded-xl p-3 text-sm font-bold text-slate-700 focus:border-blue-500 transition-all" value="28-32 PSI">
                         </div>
                     </div>
@@ -76,52 +76,42 @@
 
                 <!-- Cronograma de Cambios -->
                 <section class="bg-white rounded-[2.5rem] border border-slate-200 p-8 card-shadow overflow-hidden">
-                    <h2 class="text-xl font-black mb-6 flex items-center gap-2 text-slate-800">
-                        <i data-lucide="calendar-clock" class="text-amber-500"></i> Cronograma de Mantenimiento
+                    <h2 class="text-xl font-black mb-6 flex items-center gap-2 text-slate-800 text-balance">
+                        <i data-lucide="calendar-clock" class="text-amber-500"></i> Intervalos de Mantenimiento Sugeridos
                     </h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-balance">
                         <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-3">
                             <div class="bg-blue-100 p-2 rounded-lg text-blue-600 shrink-0"><i data-lucide="droplet" class="w-4 h-4"></i></div>
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase">Aceite Motor</p>
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-tighter">Aceite Motor</p>
                                 <p class="text-xs font-bold text-slate-700">Cada 5-7k km</p>
-                                <p class="text-[9px] text-slate-500 italic">Pequeño: 2.7L</p>
                             </div>
                         </div>
                         <div class="p-4 rounded-2xl bg-red-50 border border-red-100 flex items-start gap-3">
                             <div class="bg-red-100 p-2 rounded-lg text-red-600 shrink-0"><i data-lucide="activity" class="w-4 h-4"></i></div>
                             <div>
-                                <p class="text-[10px] font-black text-red-400 uppercase tracking-tighter">Correa Distribución</p>
-                                <p class="text-xs font-bold text-red-700">Cada 50-60k km</p>
-                                <p class="text-[9px] text-red-500 italic">Crítico en 16V</p>
+                                <p class="text-[10px] font-black text-red-400 uppercase tracking-tighter text-balance">Correa Distribución</p>
+                                <p class="text-xs font-bold text-red-700">Cada 60k km</p>
                             </div>
                         </div>
                         <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-start gap-3">
                             <div class="bg-indigo-100 p-2 rounded-lg text-indigo-600 shrink-0"><i data-lucide="rotate-ccw" class="w-4 h-4"></i></div>
                             <div>
-                                <p class="text-[10px] font-black text-indigo-400 uppercase">Dirección Hidr.</p>
-                                <p class="text-xs font-bold text-indigo-700">Cada 40,000 km</p>
-                                <p class="text-[9px] text-indigo-500 italic">Líquido Tutela GI/A</p>
+                                <p class="text-[10px] font-black text-indigo-400 uppercase tracking-tighter">Dirección Hidr.</p>
+                                <p class="text-xs font-bold text-indigo-700">Cada 40k km</p>
                             </div>
                         </div>
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-3">
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-3 text-balance">
                             <div class="bg-amber-100 p-2 rounded-lg text-amber-600 shrink-0"><i data-lucide="zap" class="w-4 h-4"></i></div>
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase">Bujías</p>
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-tighter">Bujías</p>
                                 <p class="text-xs font-bold text-slate-700">Revisar c/10k km</p>
                             </div>
                         </div>
                         <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-3">
                             <div class="bg-green-100 p-2 rounded-lg text-green-600 shrink-0"><i data-lucide="thermometer" class="w-4 h-4"></i></div>
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase">Refrigerante</p>
-                                <p class="text-xs font-bold text-slate-700">Cada 2 años</p>
-                            </div>
-                        </div>
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-3">
-                            <div class="bg-slate-200 p-2 rounded-lg text-slate-600 shrink-0"><i data-lucide="circle-stop" class="w-4 h-4"></i></div>
-                            <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase">Frenos DOT 4</p>
+                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-tighter">Refrigerante</p>
                                 <p class="text-xs font-bold text-slate-700">Cada 2 años</p>
                             </div>
                         </div>
@@ -132,15 +122,15 @@
             <!-- Resumen y Asistente -->
             <aside class="space-y-8">
                 <div class="bg-slate-900 rounded-[2.5rem] p-8 text-white shadow-2xl shadow-slate-200 h-fit">
-                    <p class="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mb-2">Inversión Total</p>
+                    <p class="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mb-2">Gasto Total</p>
                     <div class="text-5xl font-black tracking-tighter mb-8" id="total-global">$ 0.00</div>
                     <div class="space-y-4 pt-6 border-t border-slate-800">
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400 text-sm">Servicios:</span>
+                        <div class="flex justify-between items-center text-balance">
+                            <span class="text-slate-400 text-sm">Servicios registrados:</span>
                             <span id="service-count" class="font-bold bg-white/10 px-3 py-1 rounded-lg">0</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400 text-sm">Último Km:</span>
+                        <div class="flex justify-between items-center text-balance">
+                            <span class="text-slate-400 text-sm">Último Km anotado:</span>
                             <span id="last-km" class="font-bold text-blue-400 text-lg">---</span>
                         </div>
                     </div>
@@ -151,15 +141,15 @@
                         <h3 class="font-black text-slate-800 flex items-center gap-2 mb-4">
                             <i data-lucide="sparkles" class="text-indigo-500 w-5 h-5"></i> Asistente IA ✨
                         </h3>
-                        <p class="text-xs text-slate-500 mb-6 leading-relaxed">Analiza ruidos o fallas específicas de tu motor 16V.</p>
-                        <button id="btn-ai-assist" class="w-full py-4 bg-indigo-600 text-white rounded-2xl font-black text-sm hover:bg-indigo-700 transition-all shadow-lg">
-                            Consultar Gemini
+                        <p class="text-xs text-slate-500 mb-6 leading-relaxed">Consulta a Gemini sobre ruidos o fallas de tu Siena.</p>
+                        <button id="btn-ai-assist-open" class="w-full py-4 bg-indigo-600 text-white rounded-2xl font-black text-sm hover:bg-indigo-700 transition-all shadow-lg">
+                            Consultar IA
                         </button>
                     </div>
                 </div>
 
                 <button id="export-csv" class="w-full py-4 border-2 border-slate-200 text-slate-600 rounded-2xl font-bold text-sm hover:bg-slate-50 transition-all flex items-center justify-center gap-2 uppercase tracking-widest">
-                    <i data-lucide="download" class="w-4 h-4"></i> Respaldar Excel
+                    <i data-lucide="download" class="w-4 h-4"></i> Exportar Excel
                 </button>
             </aside>
         </div>
@@ -168,9 +158,9 @@
         <section class="bg-white rounded-[2.5rem] border border-slate-200 card-shadow overflow-hidden">
             <div class="p-8 border-b border-slate-100 flex justify-between items-center bg-white">
                 <h2 class="text-xl font-black text-slate-800 flex items-center gap-3">
-                    <i data-lucide="history" class="text-blue-600"></i> Bitácora de Servicios
+                    <i data-lucide="history" class="text-blue-600"></i> Historial de Servicios
                 </h2>
-                <button id="add-service" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-2xl font-black text-sm shadow-xl shadow-blue-100 transition-all">
+                <button id="btn-new-service-open" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-2xl font-black text-sm shadow-xl shadow-blue-100 transition-all">
                     Nuevo Registro
                 </button>
             </div>
@@ -180,8 +170,8 @@
                     <thead class="bg-slate-50/50 text-slate-400 text-[10px] uppercase font-black tracking-widest">
                         <tr>
                             <th class="px-8 py-5">Fecha</th>
-                            <th class="px-8 py-5">Kilometraje</th>
-                            <th class="px-8 py-5">Trabajo Realizado</th>
+                            <th class="px-8 py-5">Km</th>
+                            <th class="px-8 py-5 text-balance">Trabajo</th>
                             <th class="px-8 py-5 text-right">Monto</th>
                             <th class="px-8 py-5 text-center">Acciones</th>
                         </tr>
@@ -194,45 +184,63 @@
         </section>
     </div>
 
-    <!-- Modales -->
-    <div id="modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-md overflow-hidden">
+    <!-- Modal Formulario -->
+    <div id="modal-service" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-md overflow-hidden animate-in zoom-in duration-200">
             <div class="p-8 border-b border-slate-100 flex justify-between items-center">
                 <h3 id="modal-title" class="text-2xl font-black text-slate-800">Registrar</h3>
-                <button onclick="closeModal()" class="p-2 hover:bg-slate-100 rounded-full"><i data-lucide="x" class="text-slate-400"></i></button>
+                <button type="button" onclick="window.closeServiceModal()" class="p-2 hover:bg-slate-100 rounded-full"><i data-lucide="x" class="text-slate-400"></i></button>
             </div>
             <form id="service-form" class="p-8 space-y-5">
                 <input type="hidden" id="service-id">
                 <div class="grid grid-cols-2 gap-4">
-                    <input type="date" id="s-fecha" required class="border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500 font-bold">
-                    <input type="number" id="s-km" required class="border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500 font-bold" placeholder="Km">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Fecha</label>
+                        <input type="date" id="s-fecha" required class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500 font-bold">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Km Actual</label>
+                        <input type="number" id="s-km" required class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500 font-bold">
+                    </div>
                 </div>
-                <input type="text" id="s-detalle" required class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500" placeholder="Descripción del trabajo">
-                <input type="text" id="s-taller" class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500" placeholder="Mecánico / Taller">
+                <div class="space-y-1">
+                    <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">¿Qué se reparó?</label>
+                    <input type="text" id="s-detalle" required class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500" placeholder="Ej: Cambio de aceite">
+                </div>
+                <div class="space-y-1 text-balance">
+                    <label class="text-[10px] font-bold text-slate-400 uppercase ml-1 text-balance">Mecánico / Taller</label>
+                    <input type="text" id="s-taller" class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm focus:bg-white focus:border-blue-500" placeholder="Nombre">
+                </div>
                 <div class="grid grid-cols-2 gap-4">
-                    <input type="number" step="0.01" id="s-repuestos" class="border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm font-bold" value="0" placeholder="Repuestos $">
-                    <input type="number" step="0.01" id="s-mano-obra" class="border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm font-bold" value="0" placeholder="Mano Obra $">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-1 text-balance">Repuestos $</label>
+                        <input type="number" step="0.01" id="s-repuestos" class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm font-bold" value="0">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-slate-400 uppercase ml-1 text-balance">Mano Obra $</label>
+                        <input type="number" step="0.01" id="s-mano-obra" class="w-full border-2 border-slate-50 bg-slate-50 rounded-xl p-3 text-sm font-bold" value="0">
+                    </div>
                 </div>
-                <button type="submit" class="w-full bg-slate-900 text-white font-black py-4 rounded-2xl hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 mt-4">Guardar en Historial</button>
+                <button type="submit" class="w-full bg-slate-900 text-white font-black py-4 rounded-2xl hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 mt-4">Guardar Registro</button>
             </form>
         </div>
     </div>
 
-    <!-- AI Chat Modal -->
-    <div id="ai-modal" class="fixed inset-0 bg-indigo-950/40 backdrop-blur-md hidden items-center justify-center p-4 z-[60]">
-        <div class="bg-white rounded-[3rem] shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col h-[85vh] animate-in slide-in-from-bottom duration-300">
+    <!-- Modal AI -->
+    <div id="modal-ai" class="fixed inset-0 bg-indigo-950/40 backdrop-blur-md hidden items-center justify-center p-4 z-[60]">
+        <div class="bg-white rounded-[3rem] shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col h-[85vh]">
             <div class="ai-gradient p-8 text-white flex justify-between items-center">
                 <h3 class="text-2xl font-black flex items-center gap-3"><i data-lucide="sparkles"></i> Asistente Gemini</h3>
-                <button onclick="closeAIModal()" class="hover:bg-white/20 p-2 rounded-full"><i data-lucide="x"></i></button>
+                <button type="button" onclick="window.closeAIModal()" class="hover:bg-white/20 p-2 rounded-full transition-colors"><i data-lucide="x"></i></button>
             </div>
             <div id="ai-chat" class="flex-1 overflow-y-auto p-8 space-y-6 text-sm bg-white no-scrollbar">
                 <div class="bg-indigo-50 p-6 rounded-[2rem] border border-indigo-100 text-indigo-900 leading-relaxed font-medium">
-                    Hola. Analizaré tu historial o responderé dudas técnicas específicas del motor **Fire 1.3 16V**. Recuerda que este motor es muy sensible al cambio de correa y calidad de aceite. ¿En qué puedo ayudarte?
+                    Hola. Analizaré tu historial técnico del Siena ELX. ¿Tienes algún síntoma nuevo o duda sobre el motor Fire 1.3 16V?
                 </div>
             </div>
             <div class="p-6 bg-slate-50 border-t flex gap-3">
                 <input type="text" id="ai-input" class="flex-1 border-0 bg-white rounded-2xl px-6 py-4 text-sm shadow-inner focus:ring-2 focus:ring-indigo-500 font-medium" placeholder="Escribe tu consulta...">
-                <button id="ai-send" class="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-black hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-100">Consultar</button>
+                <button id="ai-send" class="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-black hover:bg-indigo-700 transition-all shadow-lg">Consultar</button>
             </div>
         </div>
     </div>
@@ -242,44 +250,140 @@
         import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, collection, query, onSnapshot, addDoc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        const useCloud = typeof __firebase_config !== 'undefined';
+        // CONFIGURACIÓN E INICIALIZACIÓN
         let db, auth, appId;
         let globalData = [];
         const apiKey = ""; 
+        const useCloud = typeof __firebase_config !== 'undefined';
 
-        const initializeStorage = async () => {
-            const statusEl = document.getElementById('storage-status');
+        // ELEMENTOS DOM
+        const serviceModal = document.getElementById('modal-service');
+        const aiModal = document.getElementById('modal-ai');
+        const serviceForm = document.getElementById('service-form');
+        const statusEl = document.getElementById('storage-status');
+
+        // FUNCIONES GLOBALES DE CONTROL
+        window.closeServiceModal = () => serviceModal.classList.add('hidden');
+        window.closeAIModal = () => aiModal.classList.add('hidden');
+        
+        document.getElementById('btn-new-service-open').onclick = () => {
+            document.getElementById('modal-title').innerText = "Nuevo Registro";
+            serviceForm.reset();
+            document.getElementById('service-id').value = "";
+            serviceModal.classList.remove('hidden');
+        };
+
+        document.getElementById('btn-ai-assist-open').onclick = () => aiModal.classList.remove('hidden');
+
+        // MIGRACIÓN DE DATOS (RESCATE DE VERSIONES ANTERIORES)
+        const migrateOldData = () => {
+            // Claves usadas en versiones previas de la conversación
+            const oldKeys = ['siena_services', 'siena_services_v2'];
+            const currentKey = 'siena_log_data';
             
-            if (useCloud) {
-                const config = JSON.parse(__firebase_config);
-                const app = initializeApp(config);
-                auth = getAuth(app);
-                db = getFirestore(app);
-                appId = typeof __app_id !== 'undefined' ? __app_id : 'siena-app-final-prod';
-                
-                statusEl.innerText = "✓ Nube Sincronizada";
-                statusEl.className = "text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-green-50 text-green-600 border border-green-100 shadow-sm";
-                
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
+            let allMigratedData = JSON.parse(localStorage.getItem(currentKey) || "[]");
+            let migratedCount = 0;
+
+            oldKeys.forEach(key => {
+                const oldData = localStorage.getItem(key);
+                if (oldData) {
+                    try {
+                        const parsedOld = JSON.parse(oldData);
+                        if (Array.isArray(parsedOld)) {
+                            // Unir datos evitando duplicados por ID o por coincidencia exacta
+                            parsedOld.forEach(item => {
+                                const isDuplicate = allMigratedData.some(m => 
+                                    (m.id && m.id === item.id) || 
+                                    (m.fecha === item.fecha && m.km === item.km && m.detalle === item.detalle)
+                                );
+                                if (!isDuplicate) {
+                                    allMigratedData.push(item);
+                                    migratedCount++;
+                                }
+                            });
+                        }
+                        // Limpiar clave vieja para no migrar cada vez
+                        localStorage.removeItem(key);
+                    } catch (e) { console.error("Error migrando " + key, e); }
                 }
-                
-                onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        subscribeCloud();
-                        loadVehicleCloud();
-                    }
-                });
-            } else {
-                statusEl.innerText = "⚠ Almacenamiento Local (GitHub)";
-                statusEl.className = "text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-amber-50 text-amber-600 border border-amber-100 shadow-sm";
-                loadLocalData();
-                loadVehicleLocal();
+            });
+
+            // Migración de ficha técnica
+            if (!localStorage.getItem('siena_v_info') && localStorage.getItem('siena_frenos')) {
+                const frenos = localStorage.getItem('siena_frenos');
+                localStorage.setItem('siena_v_info', JSON.stringify({ frenos: frenos }));
+                localStorage.removeItem('siena_frenos');
+            }
+
+            if (migratedCount > 0) {
+                allMigratedData.sort((a,b) => new Date(b.fecha) - new Date(a.fecha));
+                localStorage.setItem(currentKey, JSON.stringify(allMigratedData));
+                console.log(`Se migraron ${migratedCount} registros antiguos.`);
             }
         };
 
+        const initialize = async () => {
+            migrateOldData(); // Ejecutar rescate de datos antes de cargar
+
+            if (useCloud) {
+                try {
+                    const config = JSON.parse(__firebase_config);
+                    const app = initializeApp(config);
+                    auth = getAuth(app);
+                    db = getFirestore(app);
+                    appId = typeof __app_id !== 'undefined' ? __app_id : 'siena-app-final-prod';
+                    
+                    statusEl.innerText = "✓ Nube Sincronizada";
+                    statusEl.className = "text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-green-50 text-green-600 border border-green-100 shadow-sm";
+                    
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                    
+                    onAuthStateChanged(auth, (user) => {
+                        if (user) {
+                            subscribeCloud();
+                            loadVehicleCloud();
+                        }
+                    });
+                } catch (e) { setupLocalStorage(); }
+            } else {
+                setupLocalStorage();
+            }
+        };
+
+        // --- MÉTODOS LOCALES (GITHUB) ---
+        function setupLocalStorage() {
+            statusEl.innerText = "⚠ Almacenamiento Local (GitHub)";
+            statusEl.className = "text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full bg-amber-50 text-amber-600 border border-amber-100 shadow-sm";
+            loadLocalData();
+            loadVehicleLocal();
+        }
+
+        function loadLocalData() {
+            const saved = localStorage.getItem('siena_log_data');
+            globalData = saved ? JSON.parse(saved) : [];
+            render(globalData);
+            updateStats(globalData);
+        }
+
+        function saveLocalData() {
+            localStorage.setItem('siena_log_data', JSON.stringify(globalData));
+            render(globalData);
+            updateStats(globalData);
+        }
+
+        function loadVehicleLocal() {
+            const d = JSON.parse(localStorage.getItem('siena_v_info') || '{}');
+            ['aceite', 'refri', 'direccion', 'frenos', 'presion'].forEach(k => {
+                const el = document.getElementById(`v-${k}`);
+                if (el && d[k]) el.value = d[k];
+            });
+        }
+
+        // --- MÉTODOS NUBE ---
         const vRef = () => doc(db, 'artifacts', appId, 'public', 'data', 'vehicle_config', 'details');
         const sColl = () => collection(db, 'artifacts', appId, 'public', 'data', 'services');
 
@@ -287,11 +391,10 @@
             const snap = await getDoc(vRef());
             if (snap.exists()) {
                 const d = snap.data();
-                if(d.aceite) document.getElementById('v-aceite').value = d.aceite;
-                if(d.refri) document.getElementById('v-refri').value = d.refri;
-                if(d.direccion) document.getElementById('v-direccion').value = d.direccion;
-                if(d.frenos) document.getElementById('v-frenos').value = d.frenos;
-                if(d.presion) document.getElementById('v-presion').value = d.presion;
+                ['aceite', 'refri', 'direccion', 'frenos', 'presion'].forEach(k => {
+                    const el = document.getElementById(`v-${k}`);
+                    if (el && d[k]) el.value = d[k];
+                });
             }
         }
 
@@ -301,50 +404,12 @@
                 snap.forEach(d => data.push({ id: d.id, ...d.data() }));
                 globalData = data.sort((a,b) => new Date(b.fecha) - new Date(a.fecha));
                 render(globalData);
-                stats(globalData);
+                updateStats(globalData);
             });
         }
 
-        function loadLocalData() {
-            const saved = localStorage.getItem('siena_services_v2');
-            globalData = saved ? JSON.parse(saved) : [];
-            render(globalData);
-            stats(globalData);
-        }
-
-        function saveLocalData() {
-            localStorage.setItem('siena_services_v2', JSON.stringify(globalData));
-            render(globalData);
-            stats(globalData);
-        }
-
-        function loadVehicleLocal() {
-            const d = JSON.parse(localStorage.getItem('siena_v_info') || '{}');
-            if(d.aceite) document.getElementById('v-aceite').value = d.aceite;
-            if(d.refri) document.getElementById('v-refri').value = d.refri;
-            if(d.direccion) document.getElementById('v-direccion').value = d.direccion;
-            if(d.frenos) document.getElementById('v-frenos').value = d.frenos;
-            if(d.presion) document.getElementById('v-presion').value = d.presion;
-        }
-
-        document.getElementById('save-vehicle').onclick = async () => {
-            const info = {
-                aceite: document.getElementById('v-aceite').value,
-                refri: document.getElementById('v-refri').value,
-                direccion: document.getElementById('v-direccion').value,
-                frenos: document.getElementById('v-frenos').value,
-                presion: document.getElementById('v-presion').value,
-                updated: new Date()
-            };
-            if (useCloud) {
-                await setDoc(vRef(), info);
-            } else {
-                localStorage.setItem('siena_v_info', JSON.stringify(info));
-            }
-            toast("Ficha técnica actualizada");
-        };
-
-        document.getElementById('service-form').onsubmit = async (e) => {
+        // --- ACCIONES FORMULARIO ---
+        serviceForm.onsubmit = async (e) => {
             e.preventDefault();
             const id = document.getElementById('service-id').value;
             const data = {
@@ -354,10 +419,10 @@
                 taller: document.getElementById('s-taller').value,
                 repuestos: parseFloat(document.getElementById('s-repuestos').value) || 0,
                 manoObra: parseFloat(document.getElementById('s-mano-obra').value) || 0,
-                updated: new Date()
+                updated: new Date().toISOString()
             };
 
-            if (useCloud) {
+            if (useCloud && db) {
                 if(id) await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'services', id), data);
                 else await addDoc(sColl(), data);
             } else {
@@ -370,52 +435,31 @@
                 globalData.sort((a,b) => new Date(b.fecha) - new Date(a.fecha));
                 saveLocalData();
             }
-            closeModal();
-            toast("Sincronizado correctamente");
+            window.closeServiceModal();
+            toast("Registro sincronizado");
+        };
+
+        document.getElementById('save-vehicle').onclick = async () => {
+            const info = {
+                aceite: document.getElementById('v-aceite').value,
+                refri: document.getElementById('v-refri').value,
+                direccion: document.getElementById('v-direccion').value,
+                frenos: document.getElementById('v-frenos').value,
+                presion: document.getElementById('v-presion').value
+            };
+            if (useCloud && db) await setDoc(vRef(), { ...info, updated: new Date().toISOString() });
+            else localStorage.setItem('siena_v_info', JSON.stringify(info));
+            toast("Ficha actualizada");
         };
 
         window.deleteItem = async (id) => {
-            if(!confirm("¿Eliminar este registro permanentemente?")) return;
-            if (useCloud) {
-                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'services', id));
-            } else {
+            if(!confirm("¿Eliminar este registro?")) return;
+            if (useCloud && db) await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'services', id));
+            else {
                 globalData = globalData.filter(x => x.id !== id);
                 saveLocalData();
             }
         };
-
-        function render(items) {
-            const b = document.getElementById('services-body');
-            if (items.length === 0) {
-                b.innerHTML = '<tr><td colspan="5" class="px-8 py-20 text-center text-slate-300 italic font-medium">No hay registros guardados.</td></tr>';
-                return;
-            }
-            b.innerHTML = items.map(i => {
-                const total = (parseFloat(i.repuestos) || 0) + (parseFloat(i.manoObra) || 0);
-                return `
-                <tr class="hover:bg-slate-50 transition-colors group border-b border-slate-50">
-                    <td class="px-8 py-6 font-bold text-slate-400 text-xs">${i.fecha}</td>
-                    <td class="px-8 py-6 font-mono font-black text-slate-600">${(i.km || 0).toLocaleString()} km</td>
-                    <td class="px-8 py-6 font-bold text-slate-800">${i.detalle} <br> <span class="text-[10px] text-slate-400 italic">${i.taller || ''}</span></td>
-                    <td class="px-8 py-6 text-right font-black text-slate-900">$ ${total.toFixed(2)}</td>
-                    <td class="px-8 py-6 text-center">
-                        <div class="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button onclick="editItem('${i.id}')" class="p-2 text-blue-600 hover:bg-blue-100 rounded-xl transition-all"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
-                            <button onclick="deleteItem('${i.id}')" class="p-2 text-red-600 hover:bg-red-100 rounded-xl transition-all"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                        </div>
-                    </td>
-                </tr>
-            `}).join('');
-            lucide.createIcons();
-        }
-
-        function stats(items) {
-            const total = items.reduce((a, b) => a + (parseFloat(b.repuestos) || 0) + (parseFloat(b.manoObra) || 0), 0);
-            const km = items.length > 0 ? Math.max(...items.map(i => parseInt(i.km) || 0)) : 0;
-            document.getElementById('total-global').innerText = `$ ${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-            document.getElementById('service-count').innerText = items.length;
-            document.getElementById('last-km').innerText = km ? `${km.toLocaleString()} km` : '---';
-        }
 
         window.editItem = (id) => {
             const i = globalData.find(x => x.id === id);
@@ -427,67 +471,96 @@
             document.getElementById('s-taller').value = i.taller || "";
             document.getElementById('s-repuestos').value = i.repuestos;
             document.getElementById('s-mano-obra').value = i.manoObra;
-            document.getElementById('modal').classList.replace('hidden', 'flex');
+            serviceModal.classList.remove('hidden');
         };
 
-        async function callGemini(p) {
-            if(!useCloud) return "La IA avanzada requiere conexión Gemini. En modo local puedes gestionar tus datos pero las consultas inteligentes no están disponibles.";
-            const sys = "Experto mecánico Fiat Siena 2006 1.3 16V Fire. Respuestas técnicas, precisas y enfocadas en mantenimiento preventivo.";
+        // --- UI RENDER ---
+        function render(items) {
+            const b = document.getElementById('services-body');
+            if (items.length === 0) {
+                b.innerHTML = '<tr><td colspan="5" class="px-8 py-20 text-center text-slate-300 italic">No hay registros aún.</td></tr>';
+                return;
+            }
+            b.innerHTML = items.map(i => {
+                const total = (parseFloat(i.repuestos) || 0) + (parseFloat(i.manoObra) || 0);
+                return `
+                <tr class="hover:bg-slate-50 transition-colors group">
+                    <td class="px-8 py-6 font-bold text-slate-400 text-xs">${i.fecha}</td>
+                    <td class="px-8 py-6 font-mono font-black text-slate-600">${(i.km || 0).toLocaleString()} km</td>
+                    <td class="px-8 py-6 font-bold text-slate-800">${i.detalle}</td>
+                    <td class="px-8 py-6 text-right font-black text-slate-900">$ ${total.toFixed(2)}</td>
+                    <td class="px-8 py-6 text-center">
+                        <div class="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="window.editItem('${i.id}')" class="p-2 text-blue-600 hover:bg-blue-100 rounded-xl"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                            <button onclick="window.deleteItem('${i.id}')" class="p-2 text-red-600 hover:bg-red-100 rounded-xl"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            `}).join('');
+            lucide.createIcons();
+        }
+
+        function updateStats(items) {
+            const total = items.reduce((a, b) => a + (parseFloat(b.repuestos) || 0) + (parseFloat(b.manoObra) || 0), 0);
+            const km = items.length > 0 ? Math.max(...items.map(i => parseInt(i.km) || 0)) : 0;
+            document.getElementById('total-global').innerText = `$ ${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+            document.getElementById('service-count').innerText = items.length;
+            document.getElementById('last-km').innerText = km ? `${km.toLocaleString()} km` : '---';
+        }
+
+        // IA
+        document.getElementById('ai-send').onclick = async () => {
+            const input = document.getElementById('ai-input');
+            if(!input.value || !useCloud) {
+                if(!useCloud) toast("IA solo disponible con conexión Nube");
+                return;
+            }
+            const chat = document.getElementById('ai-chat');
+            const userMsg = input.value;
+            chat.innerHTML += `<div class="bg-indigo-600 text-white p-5 rounded-[2rem] ml-12 self-end font-bold shadow-md">${userMsg}</div>`;
+            input.value = "";
+            
+            const load = document.createElement('div');
+            load.className = "text-indigo-400 font-bold text-xs ml-4 animate-pulse";
+            load.innerText = "Gemini analizando...";
+            chat.appendChild(load);
+
             try {
+                const sys = "Experto Fiat Siena 2006 1.3 16V Fire. Sé profesional y directo.";
                 const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ contents: [{parts: [{text: p}]}], systemInstruction: {parts: [{text: sys}]} })
+                    body: JSON.stringify({ contents: [{parts: [{text: userMsg}]}], systemInstruction: {parts: [{text: sys}]} })
                 });
                 const d = await r.json();
-                return d.candidates[0].content.parts[0].text;
-            } catch(e) { return "Error al conectar con la inteligencia artificial."; }
-        }
-
-        document.getElementById('ai-send').onclick = async () => {
-            const input = document.getElementById('ai-input');
-            if(!input.value) return;
-            const chat = document.getElementById('ai-chat');
-            chat.innerHTML += `<div class="bg-indigo-600 text-white p-5 rounded-[2rem] ml-12 self-end font-bold shadow-md">${input.value}</div>`;
-            const query = input.value; input.value = "";
-            const load = document.createElement('div'); load.className = "text-indigo-400 font-bold text-xs ml-4 animate-pulse"; load.innerText = "Gemini analizando historial..."; chat.appendChild(load);
-            const hist = globalData.slice(0,5).map(i => `${i.fecha}: ${i.detalle}`).join(', ');
-            const res = await callGemini(`Siena 1.3 16V. Historial reciente: ${hist}. Consulta: ${query}`);
-            load.remove();
-            chat.innerHTML += `<div class="bg-slate-50 p-6 rounded-[2rem] mr-12 text-slate-800 border border-slate-200 shadow-sm">${res}</div>`;
+                const res = d.candidates[0].content.parts[0].text;
+                load.remove();
+                chat.innerHTML += `<div class="bg-slate-50 p-6 rounded-[2rem] mr-12 text-slate-800 border border-slate-200">${res}</div>`;
+            } catch(e) { load.innerText = "Error de conexión con IA"; }
             chat.scrollTop = chat.scrollHeight;
         };
 
+        // EXPORT
         document.getElementById('export-csv').onclick = () => {
-            if (globalData.length === 0) return toast("No hay datos para exportar");
+            if (globalData.length === 0) return toast("No hay datos");
             const h = "Fecha,Km,Detalle,Taller,Repuestos,ManoObra,Total\n";
             const c = globalData.map(i => `${i.fecha},${i.km},"${i.detalle}","${i.taller}",${i.repuestos},${i.manoObra},${(i.repuestos+i.manoObra)}`).join('\n');
             const blob = new Blob([h + c], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.download = "mantenimiento_fiat_siena.csv";
+            link.download = "mantenimiento_siena.csv";
             link.click();
         };
 
-        window.closeModal = () => document.getElementById('modal').classList.replace('hidden', 'flex');
-        window.closeAIModal = () => document.getElementById('ai-modal').classList.replace('flex', 'hidden');
-        document.getElementById('add-service').onclick = () => {
-            document.getElementById('modal-title').innerText = "Nuevo Registro";
-            document.getElementById('service-form').reset();
-            document.getElementById('service-id').value = "";
-            document.getElementById('modal').classList.replace('hidden', 'flex');
-        };
-        document.getElementById('btn-ai-assist').onclick = () => document.getElementById('ai-modal').classList.replace('hidden', 'flex');
-
         function toast(m) {
             const t = document.createElement('div');
-            t.className = "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-8 py-4 rounded-3xl text-sm font-black shadow-2xl z-[100] animate-in slide-in-from-bottom duration-300";
+            t.className = "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-8 py-4 rounded-3xl text-sm font-black shadow-2xl z-[100]";
             t.innerText = m;
             document.body.appendChild(t);
             setTimeout(() => t.remove(), 3000);
         }
 
-        initializeStorage();
+        initialize();
         lucide.createIcons();
     </script>
 </body>
